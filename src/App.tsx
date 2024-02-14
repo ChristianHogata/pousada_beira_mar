@@ -1,24 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './View/Components/Design/Header/Index';
+import Footer from './View/Components/Design/Footer/Index';
+import SendForm from './View/Components/Design/Send Form/Index';
+import Rout from './Router';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="d-flex flex-column vh-100">
+      <Header/>
+      <div className="d-flex flex-grow-1 justify-content-center align-items-center">
+        <div>
+          <Rout/>
+        </div>
+      </div>
+      <Footer/>
     </div>
   );
 }
