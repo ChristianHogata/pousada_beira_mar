@@ -1,37 +1,33 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import api from "../View/Components/Services/Api";
-import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useLogin } from "../LoginProvider";
 
-const ControllerReservations = () => {
-  const [Reservations, setReservations] = useState([{}]);
-  const {ReservationNumber} = useParams();
+const ControllerReservations = ()=> {
+  const [numeroCartao, setnumeroCartao] = useState<string | null>(null);
+  const [validade, setvalidade] = useState<string | null>(null);
+  const [cvv, setcvv] = useState<string | null>(null);
+  const [nomeCartao, setnomeCartao] = useState<string | null>(null);
+  const [idRoom, setidRoom] = useState<string | null>(null);
+  const { loggedIn } = useLogin();
+  
+  const navigate = useNavigate(); 
 
-  useEffect(() => {
-    async function fetchReservationsData() {
-      try {
-        const response = await api.get(`/search/reservation/${ReservationNumber}`);
-        setReservations(response.data);
-      } catch (error) {
-        console.error("Error fetching Reservations data:", error);
-      }
-    }
-
-    fetchReservationsData();
-  }, [ReservationNumber]);
-
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setReservations({ ...Reservations, [name]: value });
-    console.log('Dados do formulário:', Reservations);
-  } 
-
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    // Aqui você pode adicionar a lógica para enviar os dados do formulário
-    api.delete(`/search/reservation/${ReservationNumber}`); 
+    try {
+      const response = await api.post(`/reservation/success`, {numeroCartao, validade, cvv, nomeCartao, idRoom, loggedIn});
+      
+      if (response.status === 200) {
+        navigate('/success');
+      }
+    } catch (error) {
+      console.error('Erro ao enviar dados:', error);
+    }
   };
+  
 
-  return { Reservations, handleChange, handleSubmit };
+  return {handleSubmit, setnumeroCartao, setvalidade, setcvv, setnomeCartao, setidRoom}; 
 }
 
 export default ControllerReservations;

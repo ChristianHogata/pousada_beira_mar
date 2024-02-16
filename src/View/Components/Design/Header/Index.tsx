@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
+import { useLogin } from '../../../../LoginProvider';
 
 function Header() {
-    const [search, setSearch] = useState();
-  
-    const handleSearchChange = (e:any) => {
-      setSearch(e.target.value);
-    };
+    const { loggedIn } = useLogin(); 
  
     return (
         <div>
@@ -13,10 +10,9 @@ function Header() {
                 <div className="container-fluid">
                     <a className="navbar-brand" href="#">Pousada Beira Mar</a>
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo03"></div>
-                    <form className="d-flex ms-auto" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search" value={search} onChange={handleSearchChange}></input>
-                        <button className="btn btn-light" type="button"><a className="navbar-brand" href={`/search/reservation/${search}`}>Pesquisar</a></button>
-                    </form>
+                    {loggedIn &&<form className="d-flex ms-auto" role="search" action='/myReservation'>
+                        <button className="btn btn-secondary" type="submit"><a className="navbar-brand">Minhas Reservas</a></button>
+                    </form>}
                 </div>
             </nav>         
         </div>

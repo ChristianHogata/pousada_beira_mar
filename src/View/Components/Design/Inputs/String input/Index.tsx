@@ -5,15 +5,18 @@ interface StringInputProps {
     placeholder?: string,
     maxLength?: number,
     pattern?: string;
-  }
-  
-  const StringInput: React.FC<StringInputProps> = ({ label, placeholder, maxLength, pattern }) => {
-      return (
-          <div>
-              <label className="form-label">{label}</label>
-              <input type="text" id="StringInput" className="form-control" placeholder={placeholder} maxLength={maxLength} pattern={pattern}></input>
-          </div>
-        );
-    }
+    type?:string;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    
+}
+
+const StringInput: React.FC<StringInputProps> = ({ label, type, placeholder, maxLength, pattern, onChange }) => {
+    return (
+        <div>
+            <label className="form-label">{label}</label>
+            <input type={(type = '' ? 'text' : type)} id="StringInput" className="form-control" onChange={onChange} placeholder={placeholder} maxLength={maxLength} pattern={pattern}></input>
+        </div>
+    );
+}
 
 export default StringInput;

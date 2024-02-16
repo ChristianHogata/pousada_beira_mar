@@ -8,17 +8,27 @@ const path_1 = __importDefault(require("path"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const morgan_1 = __importDefault(require("morgan"));
 const mongoose_1 = __importDefault(require("mongoose"));
+const cors_1 = __importDefault(require("cors"));
 const index_1 = __importDefault(require("./routes/index"));
+const express_session_1 = __importDefault(require("express-session"));
 //MongoDb Connection
 mongoose_1.default.Promise = global.Promise;
-mongoose_1.default.connect('mongodb://localhost/meu_banco_de_dados')
+mongoose_1.default.connect('mongodb://localhost/PousadaBeiraMar')
     .then(() => console.log('Conexão com o MongoDB estabelecida com sucesso!'))
     .catch((erro) => console.log(`Erro ao estabelecer a conexão com o MongoDB: ${erro}`));
 const app = (0, express_1.default)();
+app.use((0, express_session_1.default)({
+    secret: 'key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+}));
 app.use((0, morgan_1.default)('dev'));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
+app.use((0, cors_1.default)());
 app.use('/', index_1.default);
+app.use('/list', index_1.default);
 exports.default = app;
