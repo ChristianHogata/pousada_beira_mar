@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react';
+import {useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import StringInput from '../Inputs/String input/Index';
 import { useNavigate } from 'react-router-dom';
@@ -7,32 +7,32 @@ import ControllerReservations from '../../../../Controller/ControllerReservation
 interface MyModalProps {
     show: boolean;
     handleClose: () => void;
-    idRoom?: string;
+    idRoom: string;
+    InitDate: string;
+    FinishDate: string;
 }
   
-const MyModal = ({show, handleClose, idRoom = ''}: MyModalProps): ReactElement => {
-    const {handleSubmit, setnumeroCartao, setvalidade, setcvv, setnomeCartao, setidRoom} = ControllerReservations(); 
-
-    // Atualiza o idRoom sempre que o modal é aberto
-    useEffect(() => {
-        if (show) {
-            setidRoom(idRoom);
-        }
-    }, [show, idRoom, setidRoom]);
-
+const MyModal = ({show, handleClose, idRoom, InitDate, FinishDate}: MyModalProps) => {
     const navigate = useNavigate();
-    console.log(idRoom);
+    const {handleSubmit, setnumeroCartao, setvalidade, setcvv, setnomeCartao, setidRoom, setInitDate, setFinishDate} = ControllerReservations({navigate}); 
 
+    console.log(InitDate);
+    console.log(FinishDate);
+
+    useEffect(() => {
+        setidRoom(idRoom);
+        setInitDate(InitDate);
+        setFinishDate(FinishDate);
+    }, [idRoom]);
+    
     return (
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title className="text-center w-100">Dados de pagamento</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          
-        
-            <form style={{border: "Groove"}} className="p-3" onSubmit={handleSubmit}>
-                
+               
+            <form style={{border: "Groove"}} className="p-3" onSubmit={handleSubmit}>       
                 <div className="mb-3">
                     <div className="mb-3">
                         <StringInput onChange={e => setnumeroCartao(e.target.value)} label = "Número do cartão" maxLength={19} placeholder='1234 5678 9012 3456'/> 

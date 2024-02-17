@@ -1,23 +1,14 @@
 import React from 'react';
 
-const NumberInput: React.FC<{}> = (props)=>{
-    return (
-        <div className="mb-3">
-            <div className="row">
-                <div className="col">
-                    <div className="mb-3">
-                        <label className="form-label">Adultos</label>
-                        <input type="number" min={0} id="numberInput" className="form-control"></input>
-                    </div>
-                </div>
+interface NumberInputProps {
+    label: string,
+}
 
-                <div className="col">
-                    <div className="mb-3">
-                        <label className="form-label">Crianças</label>
-                        <input type="number" min={0} id="numberInput" className="form-control"></input>
-                    </div>
-                </div>
-            </div>
+const NumberInput = ({label}: NumberInputProps)=>{
+    return (
+        <div>
+            <label className="form-label">{label}</label>
+            <input type="number" min={0} id="numberInput" className="form-control"></input>
         </div>
     );
 }

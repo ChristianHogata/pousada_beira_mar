@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
@@ -8,18 +8,19 @@ import MyModal from '../Modal/Index';
 import { useLocation } from "react-router-dom";
 
 const CarouselCards = ()=>{
-    
-    const [show, setShow] = React.useState(false);
-    const [currentId, setCurrentId] = React.useState<string | undefined>(undefined);
-    const handleClose = () => setShow(false);
-    const handleShow = (id: string) => {
-        setCurrentId(id);
-        setShow(true);
-    };
-    const location = useLocation();
-    const data = location.state.data;
+    const [show, setShow] = useState(false);
+    const [Id, setId] = useState<string | undefined>(undefined);
+    const DataLocation = useLocation();
+    const data = DataLocation.state ? DataLocation.state.data : null;
+    const dateData = DataLocation.state ? { initDate: DataLocation.state.date.initReservationDate, finishDate: DataLocation.state.date.finishReservationDate} : null;
 
-    // Agrupa os dados em grupos de 3
+    
+
+    const handleShow = (id: string) => {
+        setId(id);
+        setShow(true);
+    }; 
+
     const groupedData = [];
     for (let i = 0; i < data.length; i += 3) {
         groupedData.push(data.slice(i, i + 3));
@@ -46,7 +47,7 @@ const CarouselCards = ()=>{
                                     <div className="d-flex justify-content-center">
                                         <Button variant="primary" onClick={() => handleShow(item._id)}>Reservar</Button>
                                     </div>
-                                    <MyModal show={show} handleClose={handleClose} idRoom={currentId}/>
+                                    <MyModal show={show} handleClose={()=>{setShow(false)}} idRoom={Id||''} InitDate={dateData?.initDate} FinishDate={dateData?.finishDate}/>
                                 </Card.Body>
                                 </Card>
                             </Col>

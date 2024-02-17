@@ -1,18 +1,16 @@
+import { useState } from "react";
 import api from "../View/Components/Services/Api";
 
-
-
-async function ControllerMyReservation(loggedIn:string) {
-   
-
-    if(localStorage.getItem('myReservationData') === null){
+const ControllerMyReservation = () => {
+    const[myReservationData, setmyReservationData] = useState<any | null>(null);
+    const onLoad = async (loggedIn: any) => {     
         const response = await api.get(`/myReservation?idUser=${loggedIn}`);
-        console.log('a');
+        
         if(response.status ===(200)){
-            localStorage.setItem('myReservationData', JSON.stringify(response.data));
-        }
-    } 
-   
+            setmyReservationData(response.data);
+        } 
+    }
+   return {onLoad, myReservationData}; 
 }
 
 export default ControllerMyReservation;

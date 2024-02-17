@@ -7,36 +7,31 @@ import Row from 'react-bootstrap/Row';
 import ControllerMyReservation from '../../../Controller/ControllerMyReservation';
 import { useLogin } from '../../../LoginProvider';
 import ControllerCancelReservation from '../../../Controller/ControllerCancelReservation';
+import { Navigator, useNavigate } from 'react-router-dom';
 
 const MyReservationTable = ()=>{
     const [dataLoaded, setDataLoaded] = useState(false);
+    const [myReservation, setmyReservation] = useState();
     const { loggedIn } = useLogin();
+    const{onLoad, myReservationData} = ControllerMyReservation();
+    const navigator = useNavigate();
+
 
     useEffect( () => {
-        ControllerMyReservation(loggedIn).then(() => {
-            setDataLoaded(true);
-        });
+        onLoad(loggedIn);
     }, []);
-
-    if (!dataLoaded) {
-        return <div>Carregando...</div>; // ou qualquer outro componente de carregamento que você preferir
-    }
-
-    let myReservation = localStorage.getItem('myReservationData'); 
-
-    if(myReservation !== null){
-        var myReservationData = JSON.parse(myReservation);  
-    } 
    
     const groupedData = [];
-    for (let i = 0; i < myReservationData.length; i += 3) {
-        groupedData.push(myReservationData.slice(i, i + 3));
+    if(myReservationData){
+        for (let i = 0; i < myReservationData.length; i += 3) {
+            groupedData.push(myReservationData.slice(i, i + 3));
+        }
     }
 
     const handleCancelReservation = async (id: string) => {
         try {
             await ControllerCancelReservation(id);
-            window.location.reload();
+                navigator('/Cancel/sucess',{state:id});
         } catch (error) {
             console.error(error);
         }          

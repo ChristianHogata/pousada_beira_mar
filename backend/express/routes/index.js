@@ -48,7 +48,7 @@ router.get('/list', (req, res, next) => __awaiter(void 0, void 0, void 0, functi
     const { pousada = '1', initReservationDate, endReservationDate } = req.query;
     let startDate = typeof initReservationDate === 'string' ? new Date(initReservationDate) : undefined;
     let endDate = typeof endReservationDate === 'string' ? new Date(endReservationDate) : undefined;
-    const rooms = yield model_Reservation_1.default.find(Object.assign({ pousada: Number(pousada), user: null }, (startDate && endDate ? {
+    const rooms = yield model_Reservation_1.default.find(Object.assign({ pousada: Number(pousada) }, (startDate && endDate ? {
         $or: [
             { initReservationDate: { $gt: endDate } },
             { endReservationDate: { $lt: startDate } },
@@ -97,7 +97,11 @@ router.put('/myReservation/cancel', (req, res, next) => __awaiter(void 0, void 0
     try {
         const { idRoom } = req.query;
         const updatedRoom = yield model_Reservation_1.default.findOneAndUpdate({ _id: idRoom }, // condição
-        { $set: { user: null } }, // atualização
+        { $set: {
+                user: null,
+                initReservationDate: null,
+                endReservationDate: null
+            } }, // atualização
         { new: true } // opções
         );
         console.log(idRoom);
@@ -115,10 +119,13 @@ router.post('/reservation/success', (req, res, next) => __awaiter(void 0, void 0
         console.log(idRoom);
         console.log(loggedIn);
         const updatedRoom = yield model_Reservation_1.default.findOneAndUpdate({ _id: idRoom }, // condição
-        { $set: { user: loggedIn } }, // atualização
-        { new: true } // opções
+        { $set: {
+                user: loggedIn,
+                initReservationDate: req.body.initDate,
+                endReservationDate: req.body.finishDate
+            } }, { new: true } // opções
         );
-        res.sendStatus(200);
+        res.send(idRoom);
     }
     catch (error) {
         console.error(error);

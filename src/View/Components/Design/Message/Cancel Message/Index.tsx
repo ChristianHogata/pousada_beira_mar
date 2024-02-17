@@ -1,16 +1,16 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-const Message = () => {
+const MessageCancel = () => {
     const DataLocation = useLocation();
-    const data = DataLocation.state ? DataLocation.state.data : null;
+    const data = DataLocation.state ? DataLocation.state: null;
     console.log(data);
     return (
         <div>
-            <h1>{`Sua reserva foi realizada com sucesso!`}</h1> 
+            <h1>{`Sua reserva foi cancelada com sucesso!`}</h1> 
             <h3>{`Código: ${data}`}</h3>      
         </div>
     );
 }
 
-export default Message;
+export default MessageCancel;

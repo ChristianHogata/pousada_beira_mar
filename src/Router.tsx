@@ -7,6 +7,7 @@ import RegisterForm from "./View/Components/Design/Register Form/Index";
 import { useLogin } from "./LoginProvider";
 import { ReactNode, ReactElement } from 'react';
 import MyReservationTable from './View/Components/Table/MyReservationTable';
+import MessageCancel from './View/Components/Design/Message/Cancel Message/Index';
 
 interface RedirectIfNotLoggedInProps {
   children?: ReactNode;
@@ -54,6 +55,7 @@ const Rout = () => {
         <Route path="/success" element={<RedirectIfNotLoggedIn><Message/></RedirectIfNotLoggedIn>} />
         <Route path="/register" element={<RedirectIfNotLoggedIn><RegisterForm/></RedirectIfNotLoggedIn>} />
         <Route path="/myReservation" element={<RedirectIfNotLoggedIn><MyReservationTable/></RedirectIfNotLoggedIn>} />
+        <Route path="/Cancel/sucess" element={<RedirectIfNotLoggedIn><MessageCancel/></RedirectIfNotLoggedIn>} />
         <Route path="*" element={<RedirectIfNotLoggedIn></RedirectIfNotLoggedIn>} />
       </Routes>
     </BrowserRouter>

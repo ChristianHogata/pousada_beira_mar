@@ -1,16 +1,27 @@
 import React from 'react';
 
-const SelectInput: React.FC<{ onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void }> = ({ onChange }) => {
+interface Value {
+    value: number;
+    text: string;
+}
+
+interface SelectInputProps{
+    onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void,
+    values: Value[]; 
+}
+                    
+const SelectInput = ({onChange, values }: SelectInputProps) => {
     return (
-        <div className="mb-3">
+        <div>
             <label className="form-label">Seleção</label>
             <select id="selectInput" className="form-control" onChange={onChange}>
-                <option value={1}>Pousada Beira Mar - Caraguatatuba-SP</option>
-                <option value={2}>Pousada Beira Mar - Ubatuba-SP</option>
+                <option defaultValue={0} value={0}>{'Selecione um local'}</option>
+                {values.map((value, index) => (
+                    <option key={index} value={value.value}>{value.text}</option>
+                ))}
             </select>
         </div>
     );
 }
-
 
 export default SelectInput;

@@ -8,7 +8,7 @@ function Header() {
         <div>
             <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="#">Pousada Beira Mar</a>
+                    <a className="navbar-brand" href="/search">Pousada Beira Mar</a>
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo03"></div>
                     {loggedIn &&<form className="d-flex ms-auto" role="search" action='/myReservation'>
                         <button className="btn btn-secondary" type="submit"><a className="navbar-brand">Minhas Reservas</a></button>

@@ -30,7 +30,6 @@ router.get('/list', async (req: Request, res: Response, next: NextFunction) => {
 
   const rooms = await modelReservation.find({
     pousada: Number(pousada),
-    user: null,
     ...(startDate && endDate ? {
       $or: [
         { initReservationDate: { $gt: endDate } },
@@ -94,7 +93,11 @@ router.put('/myReservation/cancel', async (req: Request, res: Response, next: Ne
 
     const updatedRoom = await modelReservation.findOneAndUpdate(
       { _id: idRoom }, // condição
-      { $set: { user: null}}, // atualização
+      {$set: { 
+        user: null,
+        initReservationDate: null,
+        endReservationDate: null
+      }}, // atualização
       { new: true } // opções
     );
 
@@ -117,11 +120,15 @@ router.post('/reservation/success', async (req: Request, res: Response, next: Ne
 
     const updatedRoom = await modelReservation.findOneAndUpdate(
       { _id: idRoom }, // condição
-      { $set: { user: loggedIn}}, // atualização
+      {$set: { 
+        user: loggedIn,
+        initReservationDate: req.body.initDate,
+        endReservationDate: req.body.finishDate
+      }},
       { new: true } // opções
     );
 
-    res.sendStatus(200);
+    res.send(idRoom);
   } catch (error) {
     console.error(error);
     res.sendStatus(500); // Envie o status HTTP 500 se ocorrer um erro

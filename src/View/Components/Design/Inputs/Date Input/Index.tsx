@@ -1,21 +1,22 @@
-import React, { FC, useState, useEffect } from 'react';
+import React from 'react';
 
-const DateInputInit: React.FC<{ onChange: (event: React.ChangeEvent<HTMLInputElement>) => void, minDate: string }> = ({ onChange, minDate }) => {
-    const [InitDate, setEndDate] = useState(minDate);
-   
-    const handleStartDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setEndDate(event.target.value);
-        onChange(event); // Passa o evento para cima
-    };
+interface DateInputProps {
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    minDate?: string;
+    label: string;
+}
+
+const DateInput = ({onChange, minDate, label}: DateInputProps) => {
+    const today = new Date();
+    const formattedDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+    const minValue = minDate || formattedDate;
 
     return (
-        <div className="col">
-            <div className="mb-3">
-                <label className="form-label">Data de Início</label>
-                <input type="date" id="startDateInput" min={InitDate} value={InitDate} onChange={handleStartDateChange} className="form-control"></input>
-            </div>
-        </div>
+        <div>
+            <label className="form-label">{label}</label>
+            <input type="date" id="DateInput" min={minValue}  onChange={onChange} className="form-control"></input>
+        </div>   
     );
 }
 
-export default DateInputInit;
+export default DateInput;
