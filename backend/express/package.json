@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "tsc",
-    "start": "node ./bin/www"
+    "start": "node ./bin/dist/bin/www"
   },
   "dependencies": {
     "@types/bcrypt": "^5.0.2",

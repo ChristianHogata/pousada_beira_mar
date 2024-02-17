@@ -1,7 +1,7 @@
 import Header from './View/Components/Design/Header/Index';
 import Footer from './View/Components/Design/Footer/Index';
-import Rout from './Router';
-import { LoginProvider } from './LoginProvider';
+import Rout from './Controller/ControllerRouter';
+import { LoginProvider } from './View/Components/Services/LoginProvider';
 
 function App() {
   return (

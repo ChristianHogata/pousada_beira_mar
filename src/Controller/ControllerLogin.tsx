@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import api from "../View/Components/Services/Api";
 import { NavigateFunction } from 'react-router-dom';
-import { useLogin } from "../LoginProvider";
+import { useLogin } from "../View/Components/Services/LoginProvider";
 
 const ControllerLogin = (navigate?: NavigateFunction) => {
   const { setLoggedIn } = useLogin();
@@ -14,11 +14,9 @@ const ControllerLogin = (navigate?: NavigateFunction) => {
       const response = await api.post(`/login`, {login, password});
 
       if (response.status === 200) {
-        // Atualiza o estado de login no contexto
         setLoggedIn(response.data.id);
 
-        // Atualiza o estado de login no localStorage
-        localStorage.setItem('loggedIn', JSON.stringify(response.data.id));
+        sessionStorage.setItem('loggedIn', JSON.stringify(response.data.id));
 
         if (navigate) {
           navigate('/search');

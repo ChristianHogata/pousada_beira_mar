@@ -1,6 +1,6 @@
 import { useState } from "react";
 import api from "../View/Components/Services/Api";
-import { useLogin } from "../LoginProvider";
+import { useLogin } from "../View/Components/Services/LoginProvider";
 import { NavigateFunction } from "react-router-dom";
 
 interface ControllerReservations{
