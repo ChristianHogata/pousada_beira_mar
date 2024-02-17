@@ -42,7 +42,6 @@ const ControllerLogin = (router) => {
     router.post('/login', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         // Procure um usuário com o login fornecido
         const user = yield model_Users_1.default.findOne({ email: req.body.login });
-        console.log('chegou3');
         if (!user) {
             // Se nenhum usuário for encontrado, retorne um erro
             return res.status(400).send('Invalid login or password');
@@ -63,7 +62,6 @@ const ControllerLogin = (router) => {
                         id: user.id
                     };
                 }
-                console.log('ok');
                 return res.status(200).send(req.session.user);
             });
         }

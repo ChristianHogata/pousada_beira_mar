@@ -25,7 +25,7 @@ const ControllerFindRooms = (router: any)=>{
         });
     
         if (rooms) {
-        return res.status(200).send(rooms);
+            return res.status(200).send(rooms);
         exit;
         }
     
