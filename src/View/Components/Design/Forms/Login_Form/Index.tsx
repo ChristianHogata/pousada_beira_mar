@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import StringInput from '../../Inputs/String input/Index';
+import StringInput from '../../Inputs/String_input/Index';
 import { useNavigate } from 'react-router-dom';
 import ControllerLogin from '../../../../../Controller/ControllerLogin';
 

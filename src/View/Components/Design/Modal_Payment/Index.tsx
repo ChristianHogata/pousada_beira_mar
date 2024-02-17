@@ -1,6 +1,6 @@
 import {useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import StringInput from '../Inputs/String input/Index';
+import StringInput from '../Inputs/String_input/Index';
 import { useNavigate } from 'react-router-dom';
 import ControllerReservations from '../../../../Controller/ControllerReservations';
 

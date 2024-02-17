@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
-import StringInput from '../../Inputs/String input/Index';
-import EmailInput from '../../Inputs/Email Input/Index';
-import TelInput from '../../Inputs/Tel Input/Index';
+import StringInput from '../../Inputs/String_input/Index';
+import EmailInput from '../../Inputs/Email_Input/Index';
+import TelInput from '../../Inputs/Tel_Input/Index';
 import { useNavigate } from 'react-router-dom';
 import ControllerRegisterUser from '../../../../../Controller/ControllerRegisterUser';
 

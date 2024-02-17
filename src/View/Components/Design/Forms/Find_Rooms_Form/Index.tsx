@@ -1,7 +1,7 @@
 import React from 'react';
-import SelectInput from '../../Inputs/Select Input/Index';
-import DateInput from '../../Inputs/Date Input/Index';
-import NumberInput from '../../Inputs/Number Input/Index';
+import SelectInput from '../../Inputs/Select_Input/Index';
+import DateInput from '../../Inputs/Date_Input/Index';
+import NumberInput from '../../Inputs/Number_Input/Index';
 import ControllerFindRooms from '../../../../../Controller/ControllerFindRooms';
 import {useNavigate } from 'react-router-dom';
 
