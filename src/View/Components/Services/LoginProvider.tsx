@@ -2,7 +2,7 @@ import React, { createContext, useState, useContext, ReactNode } from 'react';
 
 // Define o tipo para o valor do contexto
 type LoginContextType = {
-  loggedIn: string;
+  loggedIn: any;
   setLoggedIn: (value: string) => void;
 };
 

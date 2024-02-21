@@ -4,9 +4,10 @@ interface DateInputProps {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     minDate?: string;
     label: string;
+    required: boolean;
 }
 
-const DateInput = ({onChange, minDate, label}: DateInputProps) => {
+const DateInput = ({onChange, minDate, label, required}: DateInputProps) => {
     const today = new Date();
     const formattedDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
     const minValue = minDate || formattedDate;
@@ -14,7 +15,7 @@ const DateInput = ({onChange, minDate, label}: DateInputProps) => {
     return (
         <div>
             <label className="form-label">{label}</label>
-            <input type="date" id="DateInput" min={minValue}  onChange={onChange} className="form-control"></input>
+            <input required={required} type="date" id="DateInput" min={minValue}  onChange={onChange} className="form-control"></input>
         </div>   
     );
 }

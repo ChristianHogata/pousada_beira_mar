@@ -18,7 +18,6 @@ const RedirectIfNotLoggedIn = ({ children }: RedirectIfNotLoggedInProps): ReactE
   const location = useLocation();
 
   if (loggedIn == '' && location.pathname !== "/") {
-    console.log('ok');
     return <Navigate to="/" />;
   }
 

@@ -8,14 +8,15 @@ interface Value {
 interface SelectInputProps{
     onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void,
     values: Value[]; 
+    required: boolean;
 }
                     
-const SelectInput = ({onChange, values }: SelectInputProps) => {
+const SelectInput = ({onChange, values, required}: SelectInputProps) => {
     return (
         <div>
             <label className="form-label">Seleção</label>
-            <select id="selectInput" className="form-control" onChange={onChange}>
-                <option defaultValue={0} value={0}>{'Selecione um local'}</option>
+            <select required={true} id="selectInput" className="form-control" onChange={onChange}>
+                <option defaultValue={0} disabled value={0}>{'Selecione um local'}</option>
                 {values.map((value, index) => (
                     <option key={index} value={value.value}>{value.text}</option>
                 ))}

@@ -13,19 +13,25 @@ const ControllerReservations = ({navigate}:ControllerReservations)=> {
   const [cvv, setcvv] = useState<string | null>(null);
   const [nomeCartao, setnomeCartao] = useState<string | null>(null);
   const [idRoom, setidRoom] = useState<string | null>(null);
-  const { loggedIn } = useLogin();
   const [initDate, setInitDate] = useState<string | null>(null);
   const [finishDate, setFinishDate] = useState<string | null>(null);
+  const { loggedIn } = useLogin();
+  const userId = loggedIn.user;
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const response = await api.post(`/reservation/success`, {numeroCartao, validade, cvv, nomeCartao, idRoom, loggedIn, initDate, finishDate});
+      const response = await api.post(
+        `/reservation/success`,
+        { numeroCartao, validade, cvv, nomeCartao, idRoom, loggedIn, initDate, finishDate, userId},
+        { headers: { Authorization: `Bearer ${loggedIn.token}` } }
+      );
       
       if (response.status === 200) {
         navigate('/success', {state: {data: response.data}});
       }
-    } catch (error) {
+    } 
+    catch (error) {
       console.error('Erro ao enviar dados:', error);
     }
   };

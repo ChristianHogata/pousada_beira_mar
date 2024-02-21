@@ -18,7 +18,8 @@ const ControllerRegisterUser = ()=> {
       if (response.status === 200) {
         navigate('/');
       }
-    } catch (error) {
+    } 
+    catch (error) {
       console.error('Erro ao enviar dados:', error);
     }
   };

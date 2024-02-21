@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import api from "../View/Components/Services/Api";
-import { useParams } from 'react-router-dom';
 
 const ControllerDataHotel = () => {
   const [hotelName, setHotels] = useState([{}]);
@@ -9,9 +8,11 @@ const ControllerDataHotel = () => {
     async function fetchHotelData() {
       try {
         const response = await api.get(`/search/hotel`);
+
         setHotels(response.data);
-      } catch (error) {
-        console.error("Error fetching Hotels data:", error);
+      } 
+      catch (error) {
+        console.error("Erro ao buscar hospedagem", error);
       }
     }
 
@@ -20,6 +21,7 @@ const ControllerDataHotel = () => {
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
+
     setHotels({ ...hotelName, [name]: value });
   } 
 

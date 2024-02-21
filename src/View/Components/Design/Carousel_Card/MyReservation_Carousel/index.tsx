@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import { Carousel } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
@@ -7,11 +7,9 @@ import Row from 'react-bootstrap/Row';
 import ControllerMyReservation from '../../../../../Controller/ControllerFindMyReservation';
 import { useLogin } from '../../../Services/LoginProvider';
 import ControllerCancelReservation from '../../../../../Controller/ControllerCancelReservation';
-import { Navigator, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 
 const MyReservationTable = ()=>{
-    const [dataLoaded, setDataLoaded] = useState(false);
-    const [myReservation, setmyReservation] = useState();
     const { loggedIn } = useLogin();
     const{onLoad, myReservationData} = ControllerMyReservation();
     const navigator = useNavigate();
@@ -30,8 +28,9 @@ const MyReservationTable = ()=>{
 
     const handleCancelReservation = async (id: string) => {
         try {
-            await ControllerCancelReservation({navigator}, id);
-        } catch (error) {
+            await ControllerCancelReservation({navigator, loggedIn}, id);
+        } 
+        catch (error) {
             console.error(error);
         }          
     }

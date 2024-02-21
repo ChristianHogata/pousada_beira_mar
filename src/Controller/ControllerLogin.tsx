@@ -9,21 +9,26 @@ const ControllerLogin = (navigate?: NavigateFunction) => {
   const [password, setpassword] = useState<string | null>(null);
 
   const handleSubmit = async (e: any) => {
+
     e.preventDefault();
+
     try {
       const response = await api.post(`/login`, {login, password});
 
       if (response.status === 200) {
         setLoggedIn(response.data.id);
 
-        sessionStorage.setItem('loggedIn', JSON.stringify(response.data.id));
+        sessionStorage.setItem('loggedIn', JSON.stringify(response.data));
 
         if (navigate) {
           navigate('/search');
+          window.location.reload();
         }
       }
-    } catch (error) {
+    } 
+    catch (error) {
       console.error('Erro ao enviar dados:', error);
+      
       setLoggedIn('');
     }
   };
