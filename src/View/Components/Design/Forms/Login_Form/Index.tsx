@@ -7,7 +7,7 @@ import './loginForm.css';
   
 const LoginForm = ()=>{
     const navigate = useNavigate();
-    const {handleSubmit, setlogin, setpassword} = ControllerLogin(navigate); 
+    const {handleSubmit, setlogin, setpassword} = ControllerLogin(); 
     
     return (      
         <form  className="p-5" id='FmLogin' onSubmit={handleSubmit}>
@@ -50,7 +50,7 @@ const LoginForm = ()=>{
             <div className="mb-3">
                 <div className="row justify-content-center">
                     <div className="col-auto">
-                        <a href="/forgot-password" className="text-decoration-none">Esqueci minha senha</a>
+                        <a onClick={() => navigate('/RecoveryPassword')} className="text-decoration-none">Esqueci minha senha</a>
                     </div>
                 </div> 
             </div>

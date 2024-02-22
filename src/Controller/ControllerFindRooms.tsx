@@ -22,7 +22,7 @@ const ControllerFindRooms = ({navigate}:ControllerRoomsProps) => {
     try {
       const response = await api.get(`/list?pousada=${pousada}&initReservationDate=${initDate}&endReservationDate=${finishDate}`, {
         headers: { Authorization: `Bearer ${loggedIn.token}` }
-    });
+      });
 
       const data = {
         state: {data: response.data, date: {initReservationDate: initDate, finishReservationDate: finishDate}}    
