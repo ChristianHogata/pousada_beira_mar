@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../View/Components/Services/Api";
 import { useLogin } from "../View/Components/Services/LoginProvider";
 
 const ControllerLogin = () => {
   const navigate = useNavigate();
-  const { loggedIn, setLoggedIn} = useLogin();
+  const {setLoggedIn} = useLogin();
   const [login, setlogin] = useState<string | null>(null);
   const [password, setpassword] = useState<string | null>(null);
 

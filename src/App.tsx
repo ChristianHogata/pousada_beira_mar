@@ -7,16 +7,14 @@ function App() {
   return (
     <div className="d-flex flex-column vh-100">
       <LoginProvider>
-        <Header/>
+        <Header />
         <div className="d-flex flex-grow-1 justify-content-center align-items-center">
           <div>
-          
             <Rout />
-          
           </div>
         </div>
       </LoginProvider>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

@@ -15,7 +15,6 @@ const ControllerDataHotel = () => {
         console.error("Erro ao buscar hospedagem", error);
       }
     }
-
     fetchHotelData();
   });
 
@@ -25,7 +24,7 @@ const ControllerDataHotel = () => {
     setHotels({ ...hotelName, [name]: value });
   } 
 
-  return { hotelName, handleChange };
+  return {hotelName, handleChange };
 }
 
 export default ControllerDataHotel;

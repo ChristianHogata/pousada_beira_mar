@@ -5,13 +5,13 @@ interface Value {
     text: string;
 }
 
-interface SelectInputProps{
+interface SelectInputProps {
     onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void,
-    values: Value[]; 
+    values: Value[];
     required: boolean;
 }
-                    
-const SelectInput = ({onChange, values, required}: SelectInputProps) => {
+
+const SelectInput = ({ onChange, values }: SelectInputProps) => {
     return (
         <div>
             <label className="form-label">Seleção</label>

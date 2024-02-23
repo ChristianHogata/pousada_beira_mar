@@ -1,22 +1,19 @@
-import React, { ReactElement } from 'react';
-import StringInput from '../../Inputs/String_input/Index';
-import { useNavigate } from 'react-router-dom';
+import StringInput from '../../Inputs/Personal_input/Index';
 import ControllerRecoveryPassword from '../../../../../Controller/ControllerRecoveryPassword';
 import './RecoveryForm.css';
 
-  
-const RecoveryForm = ()=>{
-    const navigate = useNavigate();
-    const {handleSubmit, setlogin} = ControllerRecoveryPassword(); 
-    
-    return (      
-        <form  className="p-5" id='FmRecovery' onSubmit={handleSubmit}>
+
+const RecoveryForm = () => {
+    const { handleSubmit, setlogin } = ControllerRecoveryPassword();
+
+    return (
+        <form className="p-5" id='FmRecovery' onSubmit={handleSubmit}>
             <div className="mb-3">
                 <div className="row">
                     <div className="col">
                         <div className="mb-3">
-                            <StringInput required={true} onChange={e => setlogin(e.target.value)} label = "Digite seu e-mail" maxLength={50} type='email'/>
-                        </div>   
+                            <StringInput required={true} onChange={e => setlogin(e.target.value)} label="Digite seu e-mail" maxLength={50} type='email' />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -25,10 +22,10 @@ const RecoveryForm = ()=>{
                 <div className="row">
                     <div className="col">
                         <div className="mb-3">
-                            <StringInput required={true} label = "Repita seu e-mail" type='text' maxLength={20}/>
-                        </div>   
+                            <StringInput required={true} label="Repita seu e-mail" type='text' maxLength={50} />
+                        </div>
                     </div>
-                </div> 
+                </div>
             </div>
 
             <div className="mb-3">
@@ -36,9 +33,9 @@ const RecoveryForm = ()=>{
                     <div className="col d-flex justify-content-center align-items-center">
                         <div className="mb-3">
                             <button type="submit" className="btn btn-primary">Redefinir Senha</button>
-                        </div>   
+                        </div>
                     </div>
-                </div>          
+                </div>
             </div>
         </form>
     );

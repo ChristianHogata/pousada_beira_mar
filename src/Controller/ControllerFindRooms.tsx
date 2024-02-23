@@ -14,7 +14,6 @@ const ControllerFindRooms = ({navigate}:ControllerRoomsProps) => {
   const [finishDate, setFinishDate] = useState<string | null>(null);
   const { loggedIn } = useLogin();
 
-
   const handleSubmit = async (e: any) => {
   
     e.preventDefault();
@@ -24,12 +23,14 @@ const ControllerFindRooms = ({navigate}:ControllerRoomsProps) => {
         headers: { Authorization: `Bearer ${loggedIn.token}` }
       });
 
-      const data = {
-        state: {data: response.data, date: {initReservationDate: initDate, finishReservationDate: finishDate}}    
-      }
-
-      navigate("/result", data);
-
+      if(response.status ===(200)){
+        const data = {
+          state: {data: response.data, date: {initReservationDate: initDate, finishReservationDate: finishDate}}    
+        }
+  
+        navigate("/result", data);  
+      } 
+      
     } catch (error) {
       console.error("Error fetching Rooms data:", error);
     }

@@ -1,18 +1,18 @@
 import React from 'react';
 
-interface StringInputProps {
+interface PersonalInputProps {
     label?: string,
     placeholder?: string,
     maxLength?: number,
     pattern?: string;
-    type?:string;
+    type?: string;
     required: boolean;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-    
+
 }
 
-const StringInput: React.FC<StringInputProps> = ({ label, type, placeholder, maxLength, pattern, onChange, onKeyUp, required }) => {
+const PersonalInput: React.FC<PersonalInputProps> = ({ label, type, placeholder, maxLength, pattern, onChange, onKeyUp, required }) => {
     return (
         <div>
             <label className="form-label">{label}</label>
@@ -21,4 +21,4 @@ const StringInput: React.FC<StringInputProps> = ({ label, type, placeholder, max
     );
 }
 
-export default StringInput;
+export default PersonalInput;

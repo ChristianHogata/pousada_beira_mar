@@ -1,15 +1,13 @@
 .navbar {
-    background-color:rgba(153, 193, 238, 0.871);
+    background-color: rgba(153, 193, 238, 0.871);
 }
 
 .navbar-brand {
-    color: #ffffff; 
-    font-size: 1.5em; 
+    color: #ffffff;
+    font-size: 1.5em;
 }
 
 .btn-secondary {
     background-color: rgba(153, 193, 238, 0.871);
     border: none;
 }
-
-

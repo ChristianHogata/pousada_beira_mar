@@ -1,9 +1,9 @@
 footer {
-  background-color: rgba(153, 193, 238, 0.871); /* Altere para a cor desejada */
+  background-color: rgba(153, 193, 238, 0.871);
 }
 
 footer .text-center {
-  color: #ffffff; /* Altere para a cor desejada */
-  font-size: 1em; /* Altere para o tamanho desejado */
-  padding: 20px 0; /* Altere para o espaçamento desejado */
+  color: #ffffff;
+  font-size: 1em;
+  padding: 20px 0;
 }

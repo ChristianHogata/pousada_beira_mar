@@ -4,9 +4,13 @@
     background: rgba(153, 193, 238, 0.871);
     animation: fadeIn 2s;
   }
-  
+
   @keyframes fadeIn {
-    0% {opacity: 0;}
-    100% {opacity: 1;}
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
   }
-  

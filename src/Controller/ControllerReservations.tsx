@@ -20,9 +20,7 @@ const ControllerReservations = ({navigate}:ControllerReservations)=> {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const response = await api.post(
-        `/reservation/success`,
-        { numeroCartao, validade, cvv, nomeCartao, idRoom, loggedIn, initDate, finishDate},
+      const response = await api.post(`/reservation/success`,{ numeroCartao, validade, cvv, nomeCartao, idRoom, loggedIn, initDate, finishDate},
         { headers: { Authorization: `Bearer ${loggedIn.token}` } }
       );
       

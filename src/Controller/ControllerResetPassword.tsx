@@ -8,8 +8,7 @@ const ControllerResetPassword = () => {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-
-        
+    
         const token = new URLSearchParams(window.location.search).get('token');
 
         try {   
