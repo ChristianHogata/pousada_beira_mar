@@ -5,7 +5,7 @@ import { useLogin } from "../View/Components/Services/LoginProvider";
 
 const ControllerLogin = () => {
   const navigate = useNavigate();
-  const { loggedIn, setLoggedIn } = useLogin();
+  const { loggedIn, setLoggedIn} = useLogin();
   const [login, setlogin] = useState<string | null>(null);
   const [password, setpassword] = useState<string | null>(null);
 
@@ -16,7 +16,7 @@ const ControllerLogin = () => {
       const response = await api.post(`/login`, {login, password});
 
       if (response.status === 200) {
-        setLoggedIn(response.data.user);
+        setLoggedIn(response.data);
 
         sessionStorage.setItem('loggedIn', JSON.stringify(response.data));
         

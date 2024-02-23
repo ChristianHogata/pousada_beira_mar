@@ -9,7 +9,7 @@ interface IControllerCancelReservation{
 const ControllerCancelReservation = async ({navigator, loggedIn}:IControllerCancelReservation, idRoom: any)=> { 
 
     try {
-        const response = await api.put(`/myReservation/cancel?idRoom=${idRoom}`, {}, {
+        const response = await api.put(`/myReservation/cancel`, {idRoom, loggedIn}, {
             headers: { Authorization: `Bearer ${loggedIn.token}`}
         });
         

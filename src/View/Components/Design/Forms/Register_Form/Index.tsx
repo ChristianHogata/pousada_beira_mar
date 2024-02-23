@@ -10,6 +10,27 @@ import './RegisterForm.css';
 const RegisterForm = () => {
     const {handleSubmit, setnome, setsobrenome, setemail, settelefone, setsenha} = ControllerRegisterUser(); 
     const navigate = useNavigate();
+    
+    const handleTelefoneChange = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        let value = (e.target as HTMLInputElement).value;
+        console.log(value);
+        value = value.replace(/\D/g, ""); // remove todos os caracteres não numéricos
+        if (value.length > 0) {
+            value = "(" + value;
+        }
+        if (value.length > 3) {
+            value = value.slice(0, 3) + ") " + value.slice(3);
+        }
+        if (value.length > 10) {
+            value = value.slice(0, 10) + "-" + value.slice(10);
+        }
+        if (value.length > 15) {
+            value = value.slice(0, 15);
+        }
+        (e.target as HTMLInputElement).value = value;
+        settelefone(value);
+    };
+    
     return (
             
         <form style={{border: "Groove"}} className="p-3" id='RegisterForm' onSubmit={handleSubmit}>
@@ -42,7 +63,7 @@ const RegisterForm = () => {
                     <div className="col">
                         <div className="col">
                             <div className="mb-3">
-                                <StringInput type='tel' required={true} onChange={e => settelefone(e.target.value)} label = "Telefone" />
+                                <StringInput type='tel' required={true} onKeyUp={handleTelefoneChange} label = "Telefone" maxLength={15}/>
                             </div>                                     
                         </div>
                     </div>

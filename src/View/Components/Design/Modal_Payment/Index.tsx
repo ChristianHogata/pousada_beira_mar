@@ -21,7 +21,17 @@ const MyModal = ({show, handleClose, idRoom, InitDate, FinishDate}: MyModalProps
         setInitDate(InitDate);
         setFinishDate(FinishDate);
     }, [idRoom]);
-    
+
+    const handleValidadeChange =  (e: React.KeyboardEvent<HTMLInputElement>)  => {
+        let value = (e.target as HTMLInputElement).value;
+   
+        if  (value.length === 2 && !value.includes("/")) {
+            value = value + "/";
+            (e.target as HTMLInputElement).value = value;
+        }
+        setvalidade(value);
+    };
+     
     return (
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -40,7 +50,7 @@ const MyModal = ({show, handleClose, idRoom, InitDate, FinishDate}: MyModalProps
                     <div className="row">
                         <div className="col">
                             <div className="mb-3">
-                                <StringInput required={true} onChange={e => setvalidade(e.target.value)} label = "Validade" maxLength={5} placeholder='MM/AA' pattern='(0[1-9]|1[0-2])\/[0-9]{2}'/> 
+                                <StringInput required={true}  onKeyUp={handleValidadeChange} label = "Validade" maxLength={5} placeholder='MM/AA' pattern='(0[1-9]|1[0-2])\/[0-9]{2}'/> 
                             </div>
                         </div>
 

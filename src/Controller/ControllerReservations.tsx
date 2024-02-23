@@ -16,14 +16,13 @@ const ControllerReservations = ({navigate}:ControllerReservations)=> {
   const [initDate, setInitDate] = useState<string | null>(null);
   const [finishDate, setFinishDate] = useState<string | null>(null);
   const { loggedIn } = useLogin();
-  const userId = loggedIn.user;
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
       const response = await api.post(
         `/reservation/success`,
-        { numeroCartao, validade, cvv, nomeCartao, idRoom, loggedIn, initDate, finishDate, userId},
+        { numeroCartao, validade, cvv, nomeCartao, idRoom, loggedIn, initDate, finishDate},
         { headers: { Authorization: `Bearer ${loggedIn.token}` } }
       );
       

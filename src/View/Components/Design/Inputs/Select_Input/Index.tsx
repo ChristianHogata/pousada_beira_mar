@@ -16,7 +16,7 @@ const SelectInput = ({onChange, values, required}: SelectInputProps) => {
         <div>
             <label className="form-label">Seleção</label>
             <select required={true} id="selectInput" className="form-control" onChange={onChange}>
-                <option defaultValue={0} disabled value={0}>{'Selecione um local'}</option>
+                <option defaultValue={0} value={0}>{'Selecione um local'}</option>
                 {values.map((value, index) => (
                     <option key={index} value={value.value}>{value.text}</option>
                 ))}

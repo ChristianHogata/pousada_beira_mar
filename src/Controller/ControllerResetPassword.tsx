@@ -12,9 +12,6 @@ const ControllerResetPassword = () => {
         
         const token = new URLSearchParams(window.location.search).get('token');
 
-        console.log(password);
-        console.log(token);
-
         try {   
             const response = await api.post(`/reset_password`, {password, token});
 

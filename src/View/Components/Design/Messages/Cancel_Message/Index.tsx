@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 const MessageCancel = () => {
     const DataLocation = useLocation();
     const data = DataLocation.state ? DataLocation.state: null;
-    console.log(data);
+
     return (
         <div>
             <h1>{`Sua reserva foi cancelada com sucesso!`}</h1> 
