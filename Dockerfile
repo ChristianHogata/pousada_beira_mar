@@ -1,11 +1,14 @@
-FROM node:alpine as build
-WORKDIR '/app'
-COPY package.json .
+FROM node:18-alpine as build
+
+WORKDIR /app
+
+ENV PATH /app/node_modules/.bin:$PATH
+
+COPY package*.json ./
 RUN npm install
-COPY . .
+COPY . ./
 RUN npm run build
 
-# Sirva a aplicação React com NGINX
-FROM nginx
-EXPOSE 8082
-COPY --from=build /app/build /usr/share/nginx/html
+EXPOSE 3000
+
+CMD ["npm", "start"]
