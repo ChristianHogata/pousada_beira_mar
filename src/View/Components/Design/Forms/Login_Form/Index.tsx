@@ -6,7 +6,7 @@ import './loginForm.css';
 
 const LoginForm = () => {
     const navigate = useNavigate();
-    const { handleSubmit, setlogin, setpassword } = ControllerLogin();
+    const { handleSubmit, setlogin, setpassword, loginError } = ControllerLogin();
 
     return (
         <form className="p-5" id='FmLogin' onSubmit={handleSubmit}>
@@ -25,6 +25,22 @@ const LoginForm = () => {
                     <div className="col">
                         <div className="mb-3">
                             <StringInput required={true} onChange={e => setpassword(e.target.value)} label="Senha" type='password' maxLength={20} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="mb-3">
+                <div className="row">
+                    <div className="col">
+                        <div className="mb-2" style={{ width: '100%', maxWidth: '500px' }}>  
+                            {loginError ? (
+                                <div className="alert alert-danger" role="alert">
+                                    {loginError}
+                                </div>
+                            ) : (
+                                <div style={{ height: '10px' }}></div> 
+                            )}
                         </div>
                     </div>
                 </div>

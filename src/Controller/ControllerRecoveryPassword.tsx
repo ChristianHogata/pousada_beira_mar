@@ -16,11 +16,12 @@ const ControllerRecoveryPassword = () => {
                 navigate('/RecoveryMessage');
             } 
             else{
-                navigate('/BadRecoveryMessage');   
+               navigate('/BadRecoveryMessage');   
             }
         }
         catch (error) {
             console.error('Erro ao enviar dados:', error);
+            navigate('/BadRecoveryMessage');
         }
     };
 

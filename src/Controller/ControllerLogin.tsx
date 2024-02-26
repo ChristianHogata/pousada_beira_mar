@@ -8,6 +8,7 @@ const ControllerLogin = () => {
   const {setLoggedIn} = useLogin();
   const [login, setlogin] = useState<string | null>(null);
   const [password, setpassword] = useState<string | null>(null);
+  const [loginError, setLoginError] = useState<string | null>(null);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -25,10 +26,11 @@ const ControllerLogin = () => {
     } catch (error) {
       console.error('Erro ao enviar dados:', error);
       setLoggedIn('');
+      setLoginError('Usuário ou senha inválidos.');
     }
   };
 
-  return {handleSubmit, setlogin, setpassword}; 
+  return {handleSubmit, setlogin, setpassword, loginError}; 
 }
 
 export default ControllerLogin;

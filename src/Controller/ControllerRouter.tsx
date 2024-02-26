@@ -54,8 +54,8 @@ const ControllerRouter = () => {
         <Route path="/search" element={<RedirectIfNotLoggedIn><SendForm/></RedirectIfNotLoggedIn>}/>
         <Route path="/result" element={<RedirectIfNotLoggedIn><CarouselCards/></RedirectIfNotLoggedIn>} />
         <Route path="/success" element={<RedirectIfNotLoggedIn><Messages/></RedirectIfNotLoggedIn>} />
-        <Route path="/RecoveryMessage" element={<RedirectIfNotLoggedIn><Success_Recovery/></RedirectIfNotLoggedIn>} />
-        <Route path="/BadRecoveryMessage" element={<RedirectIfNotLoggedIn><Bad_Recovery/></RedirectIfNotLoggedIn>} />
+        <Route path="/RecoveryMessage" element={<RedirectIftLoggedIn><Success_Recovery/></RedirectIftLoggedIn>} />
+        <Route path="/BadRecoveryMessage" element={<RedirectIftLoggedIn><Bad_Recovery/></RedirectIftLoggedIn>} />
         <Route path="/BadResetPassword" element={<RedirectIftLoggedIn><BadResetPasswordMessage/></RedirectIftLoggedIn>} />
         <Route path="/success" element={<RedirectIfNotLoggedIn><Messages/></RedirectIfNotLoggedIn>} />
         <Route path="/register" element={<RedirectIftLoggedIn><RegisterForm/></RedirectIftLoggedIn>} />
